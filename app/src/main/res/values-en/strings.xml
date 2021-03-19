@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RickAndMorty</string>
+    <string name="menu_item_share_role">Share role</string>
+
+
+    <!--fragment decs-->
+    <string name="role_list_decs" translation_description="Title for the role list screen where the user can see the list for a specific role.">Role List</string>
+    <string name="role_info_decs" translation_description="Title for the role info screen where the user can see the info for a specific role.">Role Info</string>
+</resources>
