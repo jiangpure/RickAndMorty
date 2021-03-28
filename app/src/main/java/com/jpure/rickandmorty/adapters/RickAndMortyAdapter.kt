@@ -1,12 +1,15 @@
 package com.jpure.rickandmorty.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.jpure.rickandmorty.data.entities.Role
-import com.jpure.rickandmorty.databinding.ListItemRoleBinding
+import com.jpure.rickandmorty.databinding.ItemListRoleBinding
+import com.jpure.rickandmorty.main.home.RoleListFragmentDirections
+import com.jpure.rickandmorty.views.DataBindingViewHolder
 
 /**
  * @author Jp
@@ -14,17 +17,16 @@ import com.jpure.rickandmorty.databinding.ListItemRoleBinding
  */
 class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewHolder>(GalleryDiffCallback()) {
 
-
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val article = getItem(position)
-        if (article != null) {
-            holder.bind(article)
+        article?.let{
+            holder.bindData(it, position)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         return DataViewHolder(
-            ListItemRoleBinding.inflate(
+            ItemListRoleBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -33,32 +35,34 @@ class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewH
     }
 
     class DataViewHolder(
-        private val binding: ListItemRoleBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+        private val binding: ItemListRoleBinding
+    ) : DataBindingViewHolder<Role>(binding.root) {
         init {
-            binding.setClickListener { _ ->
-                binding.role?.let { _ ->
-//                    val uri = Uri.parse(photo.user.attributionUrl)
-//                    val intent = Intent(Intent.ACTION_VIEW, uri)
-//                    view.context.startActivity(intent)
+            binding.setClickListener { view ->
+                binding.role?.let { it ->
+                    navigateToRoleInfo(it.id, binding.root)
                 }
             }
         }
 
-        fun bind(item: Role) {
+        override fun bindData(data: Role, position: Int) {
             binding.apply {
-                role = item
-                executePendingBindings()
+                role = data
+//                executePendingBindings()
             }
         }
+        //利用导航组件跳转
+        private fun navigateToRoleInfo(roleId: Int, view: View) {
+            val direction = RoleListFragmentDirections.actionRoleListFragmentToRoleInfoFragment(roleId)
+            view.findNavController().navigate(direction)
+        }
     }
-
 }
 
-
+//差异判断
 private class GalleryDiffCallback : DiffUtil.ItemCallback<Role>() {
     override fun areItemsTheSame(oldItem: Role, newItem: Role): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Role, newItem: Role): Boolean {

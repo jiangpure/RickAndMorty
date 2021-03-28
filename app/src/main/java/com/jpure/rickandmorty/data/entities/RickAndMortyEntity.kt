@@ -20,6 +20,7 @@ data class Role(
     val species: String,
     val type: String,
     val gender: String,
+    //添加data类需要加@Embedded注解
     @Embedded val origin:Location,
     @Embedded val location:Origin,
     val image: String,
@@ -37,6 +38,7 @@ data class Info(
     val prev: String
 )
 data class Location(
+    //指定数据库中的字段名@ColumnInfo(name = "xxx")
     @ColumnInfo(name = "location_name") val name: String,
     @ColumnInfo(name = "location_url") val url: String
 )

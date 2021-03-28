@@ -2,15 +2,15 @@ package com.jpure.rickandmorty.data
 
 import androidx.paging.PagingConfig
 import com.jpure.rickandmorty.data.remote.RickAndMortyService
-import com.jpure.rickandmorty.data.repository.ListRepository
+import com.jpure.rickandmorty.data.repository.RickAndMortyRepository
 
 /**
  * @author Jp
  * @date 2021/2/25.
  */
 object RepositoryFactory {
-    fun makeListRepository(service: RickAndMortyService, db:AppDatabase): ListRepository =
-        ListRepository(service, db, pagingConfig)
+    fun makeListRepository(service: RickAndMortyService, db:AppDatabase): RickAndMortyRepository =
+        RickAndMortyRepository(service, db, pagingConfig)
 
     val pagingConfig = PagingConfig(
         // 每页显示的数据的大小

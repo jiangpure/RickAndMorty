@@ -21,11 +21,14 @@ interface RoleDao {
     suspend fun insert(role: Role)
 
     @Query("SELECT * FROM Role")
-    fun getRole(): PagingSource<Int, Role>
+    fun getAll(): PagingSource<Int, Role>
 
     @Query("DELETE FROM Role where remoteName = :name")
     suspend fun clearRole(name: String)
 
     @Query("SELECT * FROM Role where name LIKE '%' || :parameter || '%'")
     fun roleByParameter(parameter: String): PagingSource<Int, Role>
+
+    @Query("SELECT * FROM Role where id =:id")
+    suspend fun getRoleById(id: Int): Role?
 }

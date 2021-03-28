@@ -24,7 +24,7 @@ object Versions {
     const val kotlin = "1.4.20"
     const val lifecycle = "2.2.0"
     const val material = "1.2.1"
-    const val navigation = "2.3.2"
+    const val navigation = "2.3.3"
     const val okHttpLogging = "4.9.0"
     const val paging = "3.0.0-alpha02"
     const val recyclerview = "1.0.0"

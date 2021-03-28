@@ -14,10 +14,13 @@ import com.jpure.rickandmorty.data.local.RemoteKeysDao
 import com.jpure.rickandmorty.data.local.RoleDao
 
 /**
+ * Room
  * @author Jp
  * @date 2021/2/26.
  */
+//建表、版本
 @Database(entities = [Role::class, RemoteKeys::class], version = 1, exportSchema = false)
+//设置转换器
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

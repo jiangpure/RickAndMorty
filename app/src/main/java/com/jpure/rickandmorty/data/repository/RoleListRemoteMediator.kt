@@ -1,5 +1,6 @@
 package com.jpure.rickandmorty.data.repository
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -19,7 +20,7 @@ class RoleListRemoteMediator(
 ) : RemoteMediator<Int, Role>() {
     companion object {
         private val TAG = "RoleListRemoteMediator"
-        private val remotePokemon = "roleList"
+        private val remoteRoleList = "roleList"
     }
 
     override suspend fun load(
@@ -94,7 +95,7 @@ class RoleListRemoteMediator(
                     lastItem.page
                 }
             }
-
+            Log.d("pipa", "loadKey:"+loadKey)
             // Suspending network load via Retrofit. This doesn't need to be
             // wrapped in a withContext(Dispatcher.IO) { ... } block since
             // Retrofit's Coroutine CallAdapter dispatches on a worker
@@ -117,7 +118,7 @@ class RoleListRemoteMediator(
                     url = it.url,
                     created = it.created,
                     page = page + 1,
-                    remoteName = remotePokemon
+                    remoteName = remoteRoleList
 
                 )
             }
@@ -127,12 +128,12 @@ class RoleListRemoteMediator(
             db.withTransaction {
 
                 if (loadType == LoadType.REFRESH) {
-                    remoteKeysDao.clearRemoteKeys(remotePokemon)
-                    roleDao.clearRole(remotePokemon)
+                    remoteKeysDao.clearRemoteKeys(remoteRoleList)
+                    roleDao.clearRole(remoteRoleList)
                 }
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val entity = RemoteKeys(
-                    remoteName = remotePokemon,
+                    remoteName = remoteRoleList,
                     nextKey = nextKey
                 )
                 remoteKeysDao.insert(entity)

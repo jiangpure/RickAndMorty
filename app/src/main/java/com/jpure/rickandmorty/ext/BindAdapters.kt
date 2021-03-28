@@ -15,6 +15,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty()) {
         Glide.with(view.context)
             .load(imageUrl)
+            .skipMemoryCache(false)
             .transition(DrawableTransitionOptions.withCrossFade())
             .placeholder(R.mipmap.ic_launcher_round)
             .into(view)

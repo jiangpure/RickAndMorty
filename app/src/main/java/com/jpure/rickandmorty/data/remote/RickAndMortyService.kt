@@ -1,6 +1,7 @@
 package com.jpure.rickandmorty.data.remote
 
 import com.jpure.rickandmorty.data.entities.RickAndMortyEntity
+import com.jpure.rickandmorty.data.entities.Role
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,6 +19,11 @@ interface RickAndMortyService {
     suspend  fun getRoleList(
         @Query("page") pageId:Int=0
     ): RickAndMortyEntity
+
+    @GET("character/{id}")
+    suspend  fun getRoleInfo(
+        @Path("id") id:Int=0
+    ): Role
 
 
     companion object{

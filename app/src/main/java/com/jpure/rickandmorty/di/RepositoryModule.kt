@@ -3,7 +3,7 @@ package com.jpure.rickandmorty.di
 import com.jpure.rickandmorty.data.AppDatabase
 import com.jpure.rickandmorty.data.RepositoryFactory
 import com.jpure.rickandmorty.data.remote.RickAndMortyService
-import com.jpure.rickandmorty.data.repository.ListRepository
+import com.jpure.rickandmorty.data.repository.RickAndMortyRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ class RepositoryModule {
     fun provideListRepository(
         service: RickAndMortyService,
         db: AppDatabase
-    ): ListRepository {
+    ): RickAndMortyRepository {
         return RepositoryFactory.makeListRepository(service, db)
     }
 

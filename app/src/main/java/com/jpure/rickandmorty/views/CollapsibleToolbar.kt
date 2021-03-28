@@ -10,11 +10,13 @@ class CollapsibleToolbar @JvmOverloads constructor(
 ) : MotionLayout(context, attrs, defStyleAttr), AppBarLayout.OnOffsetChangedListener {
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+        //动画随度岁高度变化而变化
         progress = -verticalOffset / appBarLayout?.totalScrollRange?.toFloat()!!
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        //添加AppBar高度变化的监听
         (parent as? AppBarLayout)?.addOnOffsetChangedListener(this)
     }
 }

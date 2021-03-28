@@ -22,9 +22,27 @@
 
     <fragment
         android:id="@+id/role_list_fragment"
-        android:name="com.jpure.rickandmorty.main.home.HomeFragment"
-        tools:layout="@layout/fragment_home">
+        android:name="com.jpure.rickandmorty.main.home.RoleListFragment"
+        android:label="@string/role_list_decs"
+        tools:layout="@layout/fragment_role_list">
+        <action
+            android:id="@+id/action_role_list_fragment_to_role_info_fragment"
+            app:destination="@id/role_info_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/role_info_fragment"
+        android:name="com.jpure.rickandmorty.main.info.RoleInfoFragment"
+        android:label="@string/role_info_decs"
+        tools:layout="@layout/fragment_role_info">
+        <argument
+            android:name="roleId"
+            app:argType="integer"
+            android:defaultValue="0"/>
     </fragment>
 
 </navigation>

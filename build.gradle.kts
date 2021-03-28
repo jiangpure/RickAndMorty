@@ -7,9 +7,10 @@ buildscript {
         maven("https://jitpack.io")
     }
     dependencies {
-        classpath(GradleConfig.GRADLE_BUILD)
+        classpath(GradleClassPath.GRADLE_BUILD)
         classpath(kotlin("gradle-plugin", Versions.kotlin))
-        classpath( GradleConfig.HILT_GRADLE_PLUGIN)
+        classpath(GradleClassPath.HILT_GRADLE_PLUGIN)
+        classpath(GradleClassPath.SAFE_ARGS)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts.kts files
     }

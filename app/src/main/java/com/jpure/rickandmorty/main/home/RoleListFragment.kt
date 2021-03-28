@@ -5,21 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.jpure.rickandmorty.R
 import com.jpure.rickandmorty.adapters.RickAndMortyAdapter
 import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
-import com.jpure.rickandmorty.views.DataBindingFragment
 import com.jpure.rickandmorty.views.footer.FooterAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_role_info.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 /**
  * @author Jp
@@ -28,20 +24,28 @@ import kotlinx.coroutines.launch
 @FlowPreview
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class RoleListFragment : DataBindingFragment(R.layout.fragment_role_list) {
+class RoleListFragment : Fragment() {
 
-    private val mBinding: FragmentRoleListBinding by binding()
+    private lateinit var mBinding: FragmentRoleListBinding
     private val mViewModel: RoleListViewModel by activityViewModels()
     private val mAdapter = RickAndMortyAdapter()
+    private var mIsFirst = true
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        if(!mIsFirst){
+            return mBinding.root
+        }
+        mBinding = FragmentRoleListBinding.inflate(inflater, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         mBinding.apply {
             //添加底部加载状态item
             roleListRecycle.adapter = mAdapter.withLoadStateFooter(FooterAdapter(mAdapter))
+            lifecycleOwner = this@RoleListFragment
         }
-//        Log.d("pipa", "onViewCreated, mBinding:"+mBinding+",roleListRecycle "+mBinding.roleListRecycle)
         mAdapter.addLoadStateListener {
             when (it.refresh) {
                 is LoadState.NotLoading -> {
@@ -56,6 +60,13 @@ class RoleListFragment : DataBindingFragment(R.layout.fragment_role_list) {
             }
         }
         loadData()
+        mIsFirst = false
+        return mBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun loadData() {
@@ -74,5 +85,7 @@ class RoleListFragment : DataBindingFragment(R.layout.fragment_role_list) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
     }
+
 }

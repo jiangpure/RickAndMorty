@@ -30,7 +30,7 @@ abstract class DataBindingFragment(@LayoutRes contentLayoutId: Int) : Fragment(c
     ) : ReadOnlyProperty<Fragment, T> {
 
         init {
-            fragment.lifecycle.addObserver(LifeCalcyObserver())
+            fragment.lifecycle.addObserver(LifeCycleObserver())
         }
 
         private val bindView = classes.getMethod("bind", View::class.java)
@@ -46,15 +46,13 @@ abstract class DataBindingFragment(@LayoutRes contentLayoutId: Int) : Fragment(c
             return bind.also { viewBinding = it }
         }
 
-        inner class LifeCalcyObserver : LifecycleEventObserver {
+        inner class LifeCycleObserver : LifecycleEventObserver {
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                 val state = source.lifecycle.currentState
                 if (state == Lifecycle.State.DESTROYED) {
                     viewBinding = null
                 }
             }
-
         }
     }
-
 }
