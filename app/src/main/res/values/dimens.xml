@@ -2,7 +2,7 @@
 <resources>
     <dimen name="role_info_app_bar_height">278dp</dimen>
 
-
+    <dimen name="margin_biggest">72dp</dimen>
     <dimen name="margin_normal">20dp</dimen>
-
+    <dimen name="margin_small">15dp</dimen>
 </resources>

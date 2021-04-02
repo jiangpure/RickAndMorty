@@ -7,4 +7,10 @@
     <!--fragment decs-->
     <string name="role_list_decs" translation_description="Title for the role list screen where the user can see the list for a specific role.">Role List</string>
     <string name="role_info_decs" translation_description="Title for the role info screen where the user can see the info for a specific role.">Role Info</string>
+    <string name="locations_list_decs">Location List</string>
+    <string name="menu_item_nav_main">Home</string>
+    <string name="menu_item_nav_my">My</string>
+    <string name="tab_item_roles">role</string>
+    <string name="tab_item_locations">location</string>
+    <string name="tab_item_episodes">episode</string>
 </resources>

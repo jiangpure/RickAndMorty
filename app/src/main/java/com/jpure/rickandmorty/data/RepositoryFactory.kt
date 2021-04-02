@@ -14,7 +14,7 @@ object RepositoryFactory {
 
     val pagingConfig = PagingConfig(
         // 每页显示的数据的大小
-        pageSize = 30,
+        pageSize = 20,
 
         // 开启占位符
         enablePlaceholders = true,
@@ -24,6 +24,6 @@ object RepositoryFactory {
         prefetchDistance = 1,
 
         // 初始化加载数量，默认为 pageSize * 3
-        initialLoadSize = 30
+        initialLoadSize = 20
     )
 }

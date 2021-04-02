@@ -7,11 +7,12 @@ import androidx.annotation.LayoutRes
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.work.ListenableWorker.Result.retry
 import com.jpure.rickandmorty.R
-import com.jpure.rickandmorty.adapters.RickAndMortyAdapter
 
 
-class FooterAdapter(private val adapter: RickAndMortyAdapter) : LoadStateAdapter<NetworkStateItemViewHolder>() {
+
+class FooterAdapter(private val retry:()->Unit) : LoadStateAdapter<NetworkStateItemViewHolder>() {
     override fun onBindViewHolder(holder: NetworkStateItemViewHolder, loadState: LoadState) {
         val params = holder.itemView.layoutParams
         if (params is StaggeredGridLayoutManager.LayoutParams) {
@@ -25,7 +26,7 @@ class FooterAdapter(private val adapter: RickAndMortyAdapter) : LoadStateAdapter
         loadState: LoadState
     ): NetworkStateItemViewHolder {
         val view = inflateView(parent, R.layout.item_recycler_net_state)
-        return NetworkStateItemViewHolder(view) { adapter.retry() }
+        return NetworkStateItemViewHolder(view) { retry}
     }
 
     private fun inflateView(viewGroup: ViewGroup, @LayoutRes viewType: Int): View {

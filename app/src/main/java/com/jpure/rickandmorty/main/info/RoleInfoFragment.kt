@@ -1,6 +1,7 @@
 package com.jpure.rickandmorty.main.info
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,10 +26,10 @@ import kotlinx.coroutines.FlowPreview
 @FlowPreview
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class RoleInfoFragment: DataBindingFragment(R.layout.fragment_role_info) {
-    private val mBinding:FragmentRoleInfoBinding by binding()
-    private val mViewModel:RoleInfoViewModel by activityViewModels()
-    private val args:RoleInfoFragmentArgs by navArgs()
+class RoleInfoFragment : DataBindingFragment(R.layout.fragment_role_info) {
+    private val mBinding: FragmentRoleInfoBinding by binding()
+    private val mViewModel: RoleInfoViewModel by activityViewModels()
+    private val args: RoleInfoFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,5 +47,4 @@ class RoleInfoFragment: DataBindingFragment(R.layout.fragment_role_info) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
     }
-
 }

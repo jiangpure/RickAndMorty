@@ -8,14 +8,14 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.databinding.ItemListRoleBinding
-import com.jpure.rickandmorty.main.home.RoleListFragmentDirections
+import com.jpure.rickandmorty.main.home.RmPageFragmentDirections
 import com.jpure.rickandmorty.views.DataBindingViewHolder
 
 /**
  * @author Jp
  * @date 2021/1/4.
  */
-class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewHolder>(GalleryDiffCallback()) {
+class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewHolder>(RoleDiffCallback()) {
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val article = getItem(position)
@@ -40,7 +40,7 @@ class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewH
         init {
             binding.setClickListener { view ->
                 binding.role?.let { it ->
-                    navigateToRoleInfo(it.id, binding.root)
+                    navigateToRoleInfo(it.id, view)
                 }
             }
         }
@@ -48,19 +48,19 @@ class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewH
         override fun bindData(data: Role, position: Int) {
             binding.apply {
                 role = data
-//                executePendingBindings()
+                executePendingBindings()
             }
         }
         //利用导航组件跳转
         private fun navigateToRoleInfo(roleId: Int, view: View) {
-            val direction = RoleListFragmentDirections.actionRoleListFragmentToRoleInfoFragment(roleId)
+            val direction = RmPageFragmentDirections.actionRmPageFragmentToRoleInfoFragment(roleId)
             view.findNavController().navigate(direction)
         }
     }
 }
 
 //差异判断
-private class GalleryDiffCallback : DiffUtil.ItemCallback<Role>() {
+private class RoleDiffCallback : DiffUtil.ItemCallback<Role>() {
     override fun areItemsTheSame(oldItem: Role, newItem: Role): Boolean {
         return oldItem.id == newItem.id
     }

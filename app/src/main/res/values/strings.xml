@@ -2,9 +2,15 @@
     <string name="app_name">RickAndMorty</string>
     <string name="menu_item_share_role">分享角色</string>
 
+    <!--string-->
+    <string name="menu_item_nav_main">主页</string>
+    <string name="menu_item_nav_my">我的</string>
 
-
+    <string name="tab_item_roles">人物</string>
+    <string name="tab_item_locations">地点</string>
+    <string name="tab_item_episodes">剧集</string>
     <!--fragment decs-->
     <string name="role_list_decs" translation_description="Title for the role list screen where the user can see the list for a specific role.">Role List</string>
     <string name="role_info_decs" translation_description="Title for the role info screen where the user can see the info for a specific role.">Role Info</string>
+    <string name="locations_list_decs" translation_description="Title for the location list screen where the user can see the list for a specific location.">Location List</string>
 </resources>

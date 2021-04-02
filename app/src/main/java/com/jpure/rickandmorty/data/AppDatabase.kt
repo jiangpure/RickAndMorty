@@ -7,9 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.jpure.rickandmorty.common.DATABASE_NAME
+import com.jpure.rickandmorty.data.entities.Locations
 import com.jpure.rickandmorty.data.entities.RemoteKeys
 import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.data.local.Converters
+import com.jpure.rickandmorty.data.local.LocationsDao
 import com.jpure.rickandmorty.data.local.RemoteKeysDao
 import com.jpure.rickandmorty.data.local.RoleDao
 
@@ -19,12 +21,13 @@ import com.jpure.rickandmorty.data.local.RoleDao
  * @date 2021/2/26.
  */
 //建表、版本
-@Database(entities = [Role::class, RemoteKeys::class], version = 1, exportSchema = false)
+@Database(entities = [Role::class, RemoteKeys::class, Locations::class], version = 1, exportSchema = false)
 //设置转换器
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun roleDao(): RoleDao
+    abstract fun locationsDao():LocationsDao
     abstract fun remoteKeysDao(): RemoteKeysDao
 
     companion object {
@@ -41,6 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
         // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                .fallbackToDestructiveMigration() //数据库更新时删除数据重新创建
                 .addCallback(
                     object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {

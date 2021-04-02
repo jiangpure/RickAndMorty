@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.jpure.rickandmorty.data.entities.Role
-import com.jpure.rickandmorty.utilties.fromJsonToObjNotExe
+import com.jpure.rickandmorty.ext.fromJsonToObjNotExe
 
 /**
  * @author Jp

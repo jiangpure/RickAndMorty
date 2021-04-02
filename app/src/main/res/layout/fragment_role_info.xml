@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="ViewModel"
+            name="viewModel"
             type="com.jpure.rickandmorty.main.info.RoleInfoViewModel" />
     </data>
 
@@ -37,7 +37,7 @@
                         android:layout_height="match_parent"
                         android:fitsSystemWindows="true"
                         android:scaleType="centerCrop"
-                        app:imageFromUrl="@{ViewModel.role.image}" />
+                        app:imageFromUrl="@{viewModel.role.image}" />
 
                     <com.google.android.material.appbar.MaterialToolbar
                         android:id="@+id/toolbar"
@@ -59,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
+                android:paddingBottom="@dimen/margin_biggest"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,11 +68,37 @@
                     android:layout_margin="@dimen/margin_normal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/role_name"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@{ViewModel.role.name}"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.role.name}"
+                        android:textAppearance="?attr/textAppearanceHeadline4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteY="0dp"
+                        tools:text="name" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:gravity="center_horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="@{viewModel.role.status}"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/role_name"
+                        tools:text="status"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

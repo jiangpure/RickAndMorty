@@ -1,16 +1,16 @@
 package com.jpure.rickandmorty.main.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.google.gson.Gson
-import com.jpure.rickandmorty.adapters.RickAndMortyAdapter
+import com.jpure.rickandmorty.adapters.LocationsListAdapter
+import com.jpure.rickandmorty.databinding.FragmentLocationsListBinding
 import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
 import com.jpure.rickandmorty.views.footer.FooterAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,18 +20,17 @@ import kotlinx.coroutines.flow.collectLatest
 
 /**
  * @author Jp
- * @date 2021/2/25.
+ * @date 2021/3/30.
  */
 @FlowPreview
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class RoleListFragment : Fragment() {
+class LocationListFragment : Fragment() {
+    private lateinit var mBinding: FragmentLocationsListBinding
 
-    private lateinit var mBinding: FragmentRoleListBinding
-    private val mViewModel: RoleListViewModel by activityViewModels()
-    private val mAdapter = RickAndMortyAdapter()
+    private val mViewModel: LocationListViewModel by activityViewModels()
     private var mIsFirst = true
-
+    private val mAdapter by lazy { LocationsListAdapter() }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,15 +39,15 @@ class RoleListFragment : Fragment() {
         if (!mIsFirst) {
             return mBinding.root
         }
-        mBinding = FragmentRoleListBinding.inflate(inflater, container, false)
+        mBinding = FragmentLocationsListBinding.inflate(inflater, container, false)
 
         mBinding.apply {
             //添加底部加载状态item
-            roleListRecycle.adapter = mAdapter.withLoadStateFooter(FooterAdapter() {
+            locationListRecycle.adapter = mAdapter.withLoadStateFooter(FooterAdapter() {
                 mAdapter.retry()
             })
-            lifecycleOwner = this@RoleListFragment
-            roleRefresh.setOnRefreshListener {
+            lifecycleOwner = this@LocationListFragment
+            locationRefresh.setOnRefreshListener {
                 loadData()
             }
         }
@@ -57,15 +56,14 @@ class RoleListFragment : Fragment() {
         return mBinding.root
     }
 
-
     private fun loadData() {
         lifecycleScope.launchWhenCreated {
             mAdapter.loadStateFlow.collectLatest { state ->
-                mBinding.roleRefresh.isRefreshing = state.refresh is LoadState.Loading
+                mBinding.locationRefresh.isRefreshing = state.refresh is LoadState.Loading
             }
         }
         lifecycleScope.launchWhenCreated {
-            mViewModel.loadRoleList().collectLatest {
+            mViewModel.getLocationList().collectLatest {
                 mAdapter.submitData(lifecycle, it)
             }
         }

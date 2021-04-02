@@ -1,11 +1,13 @@
 package com.jpure.rickandmorty.main.info
 
+import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.google.gson.Gson
 import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.data.repository.RickAndMortyRepository
 import com.jpure.rickandmorty.ext.doFailure

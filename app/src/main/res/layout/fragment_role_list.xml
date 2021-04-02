@@ -9,7 +9,7 @@
             type="com.jpure.rickandmorty.main.home.RoleListViewModel" />
     </data>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+        android:id="@+id/roleRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
@@ -18,16 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/bg_main_head_round">
-        <include
-            android:id="@+id/layoutHeader"
-            layout="@layout/motion_home_header" />
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/roleListRecycle"

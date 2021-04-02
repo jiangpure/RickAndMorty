@@ -12,6 +12,7 @@ import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.data.repository.RickAndMortyRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author Jp
@@ -21,7 +22,6 @@ import kotlinx.coroutines.FlowPreview
 @ExperimentalCoroutinesApi
 class RoleListViewModel @ViewModelInject constructor(private val repository: RickAndMortyRepository):ViewModel() {
 
-
-    fun loadRoleList(): LiveData<PagingData<Role>> =
+    fun loadRoleList(): Flow<PagingData<Role>> =
         repository.fetchRoleList().cachedIn(viewModelScope)
 }

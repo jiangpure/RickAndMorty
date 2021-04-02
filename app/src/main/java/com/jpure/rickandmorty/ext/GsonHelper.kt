@@ -1,4 +1,4 @@
-package com.jpure.rickandmorty.utilties
+package com.jpure.rickandmorty.ext
 
 import com.google.gson.Gson
 import com.google.gson.JsonElement

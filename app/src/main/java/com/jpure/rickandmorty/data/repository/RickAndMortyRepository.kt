@@ -1,5 +1,6 @@
 package com.jpure.rickandmorty.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
@@ -8,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.jpure.rickandmorty.data.AppDatabase
+import com.jpure.rickandmorty.data.entities.Locations
 import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.data.remote.RickAndMortyService
 import com.jpure.rickandmorty.ext.RmLoadResult
@@ -27,13 +29,21 @@ class RickAndMortyRepository @Inject constructor(
     private val pageConfig: PagingConfig
 ) {
 
-    fun fetchRoleList(): LiveData<PagingData<Role>> {
+    fun fetchRoleList(): Flow<PagingData<Role>> {
         return Pager(
             config = pageConfig,
             remoteMediator = RoleListRemoteMediator(service, db)
         ) {
             db.roleDao().getAll()
-        }.liveData
+        }.flow
+    }
+    fun fetchLocationsList(): Flow<PagingData<Locations>> {
+        return Pager(
+            config = pageConfig,
+            remoteMediator = LocationListRemoteMediator(service, db)
+        ) {
+            db.locationsDao().getAll()
+        }.flow
     }
 
     fun fetchRoleInfo(id:Int):Flow<RmLoadResult<Role>>{
@@ -53,9 +63,5 @@ class RickAndMortyRepository @Inject constructor(
             }
             //回到io线程
         }.flowOn(Dispatchers.IO)
-    }
-
-    companion object {
-        private const val NETWORK_PAGE_SIZE = 1
     }
 }
