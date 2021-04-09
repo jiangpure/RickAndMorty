@@ -13,4 +13,5 @@
     <string name="tab_item_roles">role</string>
     <string name="tab_item_locations">location</string>
     <string name="tab_item_episodes">episode</string>
+    <string name="main_decs">Main page</string>
 </resources>

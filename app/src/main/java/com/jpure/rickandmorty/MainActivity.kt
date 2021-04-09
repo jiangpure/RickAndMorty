@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val nav = Navigation.findNavController(this@MainActivity, R.id.nav_host)
-                if (nav.currentDestination != null && nav.currentDestination?.id != R.id.role_list_fragment) {
+                if (nav.currentDestination != null && nav.currentDestination?.id != R.id.main_fragment) {
                     //如果当前界面不是主页，那么直接调用返回即可
                     nav.navigateUp()
                 } else {

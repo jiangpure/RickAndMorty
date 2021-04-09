@@ -22,6 +22,7 @@ object Versions {
     const val inject = "0.5.2"
     const val koin = "2.1.5"
     const val kotlin = "1.4.20"
+    const val leakCanary ="2.3"
     const val lifecycle = "2.2.0"
     const val material = "1.2.1"
     const val navigation = "2.3.3"
@@ -111,6 +112,10 @@ object Kt {
     const val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val test = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+}
+
+object LeakCanary {
+    const val android = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 }
 
 object Lifecycle {

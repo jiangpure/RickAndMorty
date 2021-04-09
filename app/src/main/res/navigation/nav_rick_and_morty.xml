@@ -18,7 +18,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/rm_page_fragment">
+    android:id="@+id/main_nav"
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.jpure.rickandmorty.main.MainFragment"
+        android:label="@string/main_decs"
+        tools:layout="@layout/fragment_main"
+        >
+
+    </fragment>
 
     <fragment
         android:id="@+id/role_list_fragment"
@@ -33,17 +43,11 @@
         tools:layout="@layout/fragment_locations_list">
 
     </fragment>
-    <fragment android:id="@+id/rm_page_fragment"
-        android:name="com.jpure.rickandmorty.main.home.RmPageFragment"
+    <fragment android:id="@+id/home_page_fragment"
+        android:name="com.jpure.rickandmorty.main.home.HomePageFragment"
         android:label="@string/locations_list_decs"
-        tools:layout="@layout/fragment_rm_page">
-        <action
-            android:id="@+id/action_rm_page_fragment_to_role_info_fragment"
-            app:destination="@id/role_info_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+        tools:layout="@layout/fragment_home_page">
+
     </fragment>
     <fragment
         android:id="@+id/role_info_fragment"
@@ -56,5 +60,11 @@
             android:defaultValue="0"/>
     </fragment>
 
-
+    <action
+        android:id="@+id/action_to_role_info_fragment"
+        app:destination="@id/role_info_fragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 </navigation>

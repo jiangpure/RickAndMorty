@@ -79,6 +79,7 @@ dependencies {
     implementation(Work.workRuntimeKtx)
 
     testImplementation(Depend.junit)
+    debugImplementation(LeakCanary.android)
     androidTestImplementation(Depend.androidTestJunit)
     androidTestImplementation(Depend.espressoCore)
 }

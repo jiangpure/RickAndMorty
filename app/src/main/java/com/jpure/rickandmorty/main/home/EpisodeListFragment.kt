@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import com.jpure.rickandmorty.adapters.EpisodeListAdapter
 import com.jpure.rickandmorty.adapters.LocationsListAdapter
 import com.jpure.rickandmorty.databinding.FragmentLocationsListBinding
 import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
@@ -27,12 +28,12 @@ import kotlinx.coroutines.flow.collectLatest
 @FlowPreview
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class LocationListFragment : Fragment() {
+class EpisodeListFragment : Fragment() {
     private lateinit var mBinding: FragmentLocationsListBinding
 
-    private val mViewModel: LocationListViewModel by activityViewModels()
+    private val mViewModel: EpisodeListViewModel by activityViewModels()
     private var mIsFirst = true
-    private val mAdapter by lazy { LocationsListAdapter() }
+    private val mAdapter by lazy { EpisodeListAdapter() }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +50,7 @@ class LocationListFragment : Fragment() {
             locationListRecycle.adapter = mAdapter.withLoadStateFooter(FooterAdapter() {
                 mAdapter.retry()
             })
-            lifecycleOwner = this@LocationListFragment
+            lifecycleOwner = this@EpisodeListFragment
             locationRefresh.setOnRefreshListener {
                 loadData()
             }
@@ -66,7 +67,7 @@ class LocationListFragment : Fragment() {
             }
         }
         lifecycleScope.launchWhenCreated {
-            mViewModel.getLocationList().collectLatest {
+            mViewModel.getEpisodeList().collectLatest {
                 mAdapter.submitData(lifecycle, it)
             }
         }
@@ -74,7 +75,10 @@ class LocationListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        mIsFirst=true
+        LogUtils.d("onDestroyView")
     }
+
     override fun onDestroy() {
         super.onDestroy()
 

@@ -1,5 +1,6 @@
 package com.jpure.rickandmorty.main.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.google.gson.Gson
 import com.jpure.rickandmorty.adapters.RickAndMortyAdapter
 import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
 import com.jpure.rickandmorty.views.footer.FooterAdapter
+import com.nice.baselibrary.base.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -37,6 +39,7 @@ class RoleListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        LogUtils.d("onCreateView")
         if (!mIsFirst) {
             return mBinding.root
         }
@@ -71,4 +74,43 @@ class RoleListFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        LogUtils.d("onDestroyView")
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        mIsFirst = true
+        LogUtils.d("onDestroy")
+    }
+
+    override fun onPause() {
+        LogUtils.d("onPause")
+        super.onPause()
+    }
+
+    override fun onResume() {
+        LogUtils.d("onResume")
+        super.onResume()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        LogUtils.d("onCreate")
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        LogUtils.d("onViewCreated")
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onAttach(context: Context) {
+        LogUtils.d("onAttach")
+        super.onAttach(context)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        LogUtils.d("onActivityCreated")
+        super.onActivityCreated(savedInstanceState)
+    }
 }

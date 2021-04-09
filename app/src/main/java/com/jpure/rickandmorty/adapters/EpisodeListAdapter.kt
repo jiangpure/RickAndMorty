@@ -1,22 +1,18 @@
 package com.jpure.rickandmorty.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.google.gson.Gson
-import com.jpure.rickandmorty.data.entities.Locations
-import com.jpure.rickandmorty.databinding.ItemListLocationsBinding
+import com.jpure.rickandmorty.data.entities.Episode
+import com.jpure.rickandmorty.databinding.ItemListEpisodeBinding
 import com.jpure.rickandmorty.views.DataBindingViewHolder
 
 /**
  * @author Jp
  * @date 2021/1/4.
  */
-class LocationsListAdapter :PagingDataAdapter<Locations, LocationsListAdapter.DataViewHolder>(LocationsDiffCallback()) {
+class EpisodeListAdapter :PagingDataAdapter<Episode, EpisodeListAdapter.DataViewHolder>(EpisodeDiffCallback()) {
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val article = getItem(position)
@@ -27,7 +23,7 @@ class LocationsListAdapter :PagingDataAdapter<Locations, LocationsListAdapter.Da
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         return DataViewHolder(
-            ItemListLocationsBinding.inflate(
+            ItemListEpisodeBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -36,19 +32,19 @@ class LocationsListAdapter :PagingDataAdapter<Locations, LocationsListAdapter.Da
     }
 
     class DataViewHolder(
-        private val binding: ItemListLocationsBinding
-    ) : DataBindingViewHolder<Locations>(binding.root) {
+        private val binding: ItemListEpisodeBinding
+    ) : DataBindingViewHolder<Episode>(binding.root) {
         init {
             binding.setClickListener { view ->
-                binding.locations?.let { it ->
+                binding.episode?.let { it ->
 //                    navigateToRoleInfo(it.id, view)
                 }
             }
         }
 
-        override fun bindData(data: Locations, position: Int) {
+        override fun bindData(data: Episode, position: Int) {
             binding.apply {
-                locations = data
+                episode = data
 //                executePendingBindings()
             }
         }
@@ -61,12 +57,12 @@ class LocationsListAdapter :PagingDataAdapter<Locations, LocationsListAdapter.Da
 }
 
 //差异判断
-private class LocationsDiffCallback : DiffUtil.ItemCallback<Locations>() {
-    override fun areItemsTheSame(oldItem: Locations, newItem: Locations): Boolean {
+private class EpisodeDiffCallback : DiffUtil.ItemCallback<Episode>() {
+    override fun areItemsTheSame(oldItem: Episode, newItem: Episode): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Locations, newItem: Locations): Boolean {
+    override fun areContentsTheSame(oldItem: Episode, newItem: Episode): Boolean {
         return oldItem == newItem
     }
 }

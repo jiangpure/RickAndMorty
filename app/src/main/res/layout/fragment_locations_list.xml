@@ -23,12 +23,12 @@
             android:id="@+id/locationListRecycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
-            tools:context="com.google.samples.apps.sunflower.GardenActivity"
+            tools:context=".MainActivity"
             tools:listitem="@layout/item_list_role" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

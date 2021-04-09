@@ -24,7 +24,7 @@ class NetworkStateItemViewHolder(view: View, private val retryCallback: () -> Un
                 context().showNormalToast((data as? LoadState.Error)?.error?.message?:"unknown")
             }
             //新版不用手动去调
-            executePendingBindings()
+//            executePendingBindings()
         }
     }
 }

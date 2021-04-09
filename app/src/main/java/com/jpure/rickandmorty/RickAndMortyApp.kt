@@ -1,6 +1,7 @@
 package com.jpure.rickandmorty
 
 import android.app.Application
+import com.nice.baselibrary.base.utils.LogUtils
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -9,4 +10,8 @@ import dagger.hilt.android.HiltAndroidApp
  */
 @HiltAndroidApp
 class RickAndMortyApp:Application() {
+    override fun onCreate() {
+        super.onCreate()
+        LogUtils.init(this, true)
+    }
 }

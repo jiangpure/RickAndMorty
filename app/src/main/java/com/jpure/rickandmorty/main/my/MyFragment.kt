@@ -1,4 +1,4 @@
-package com.jpure.rickandmorty.main.home
+package com.jpure.rickandmorty.main.my
 
 import android.content.Context
 import android.os.Bundle
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.jpure.rickandmorty.adapters.LocationsListAdapter
-import com.jpure.rickandmorty.databinding.FragmentLocationsListBinding
+import com.jpure.rickandmorty.adapters.RickAndMortyAdapter
+import com.jpure.rickandmorty.databinding.FragmentMyBinding
 import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
+import com.jpure.rickandmorty.main.home.RoleListViewModel
 import com.jpure.rickandmorty.views.footer.FooterAdapter
 import com.nice.baselibrary.base.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,17 +22,18 @@ import kotlinx.coroutines.flow.collectLatest
 
 /**
  * @author Jp
- * @date 2021/3/30.
+ * @date 2021/2/25.
  */
 @FlowPreview
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class LocationListFragment : Fragment() {
-    private lateinit var mBinding: FragmentLocationsListBinding
+class MyFragment : Fragment() {
 
-    private val mViewModel: LocationListViewModel by activityViewModels()
+    private lateinit var mBinding: FragmentMyBinding
+    private val mViewModel: RoleListViewModel by activityViewModels()
+    private val mAdapter = RickAndMortyAdapter()
     private var mIsFirst = true
-    private val mAdapter by lazy { LocationsListAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,43 +43,25 @@ class LocationListFragment : Fragment() {
         if (!mIsFirst) {
             return mBinding.root
         }
-        mBinding = FragmentLocationsListBinding.inflate(inflater, container, false)
+        mBinding = FragmentMyBinding.inflate(inflater, container, false)
 
         mBinding.apply {
-            //添加底部加载状态item
-            locationListRecycle.adapter = mAdapter.withLoadStateFooter(FooterAdapter() {
-                mAdapter.retry()
-            })
-            lifecycleOwner = this@LocationListFragment
-            locationRefresh.setOnRefreshListener {
-                loadData()
-            }
+            lifecycleOwner = this@MyFragment
         }
         loadData()
         mIsFirst = false
         return mBinding.root
     }
 
+
     private fun loadData() {
-        lifecycleScope.launchWhenCreated {
-            mAdapter.loadStateFlow.collectLatest { state ->
-                mBinding.locationRefresh.isRefreshing = state.refresh is LoadState.Loading
-            }
-        }
-        lifecycleScope.launchWhenCreated {
-            mViewModel.getLocationList().collectLatest {
-                mAdapter.submitData(lifecycle, it)
-            }
-        }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-
-        LogUtils.d("onDestroy")
+        mIsFirst = true
+        LogUtils.d("onDestroyView")
     }
     override fun onPause() {
         LogUtils.d("onPause")
@@ -108,5 +91,15 @@ class LocationListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         LogUtils.d("onActivityCreated")
         super.onActivityCreated(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtils.d("onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        LogUtils.d("onDetach")
     }
 }

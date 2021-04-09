@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="locations"
-            type="com.jpure.rickandmorty.data.entities.Locations" />
+            name="episode"
+            type="com.jpure.rickandmorty.data.entities.Episode" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -24,36 +23,25 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ripple_recycle_item"
             android:gravity="start"
-            android:padding="@dimen/space_normal"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_small"
+                android:layout_margin="@dimen/space_normal"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{locations.name}"
+                android:text="@{episode.name}"
                 android:textColor="@android:color/background_dark"
-                android:textSize="@dimen/text_size_normal" />
+                android:textSize="@dimen/text_size_small" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_small"
+                android:layout_margin="@dimen/space_normal"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{locations.dimension}"
-                android:textColor="@android:color/background_dark"
-                android:textSize="@dimen/text_size_normal" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_small"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@{locations.type}"
+                android:text="@{episode.air_date}"
                 android:textColor="@android:color/background_dark"
                 android:textSize="@dimen/text_size_normal" />
         </LinearLayout>

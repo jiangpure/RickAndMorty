@@ -1,9 +1,6 @@
 package com.jpure.rickandmorty.data.remote
 
-import com.jpure.rickandmorty.data.entities.Locations
-import com.jpure.rickandmorty.data.entities.LocationsEntity
-import com.jpure.rickandmorty.data.entities.RickAndMortyEntity
-import com.jpure.rickandmorty.data.entities.Role
+import com.jpure.rickandmorty.data.entities.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -32,6 +29,10 @@ interface RickAndMortyService {
         @Query("page") pageId:Int=0
     ): LocationsEntity
 
+    @GET("episode/")
+    suspend  fun getEpisodeList(
+        @Query("page") pageId:Int=0
+    ): EpisodeEntity
 
     companion object{
         /**

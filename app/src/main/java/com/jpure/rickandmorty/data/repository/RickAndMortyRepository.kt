@@ -9,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.jpure.rickandmorty.data.AppDatabase
+import com.jpure.rickandmorty.data.entities.Episode
 import com.jpure.rickandmorty.data.entities.Locations
 import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.data.remote.RickAndMortyService
@@ -43,6 +44,14 @@ class RickAndMortyRepository @Inject constructor(
             remoteMediator = LocationListRemoteMediator(service, db)
         ) {
             db.locationsDao().getAll()
+        }.flow
+    }
+    fun fetchEpisodeList(): Flow<PagingData<Episode>> {
+        return Pager(
+            config = pageConfig,
+            remoteMediator = EpisodeListRemoteMediator(service, db)
+        ) {
+            db.episodeDao().getAll()
         }.flow
     }
 

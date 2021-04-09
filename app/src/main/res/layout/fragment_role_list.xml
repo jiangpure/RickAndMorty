@@ -18,13 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
-
+    <!--使用瀑布流布局(StaggeredGridLayoutManager)在onResume和onPause间切换会有偏移的问题-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/roleListRecycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        tools:context="com.google.samples.apps.sunflower.GardenActivity"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:context="com.jpure.rickandmorty.MainActivity"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toBottomOf="@+id/head"
         tools:listitem="@layout/item_list_role"

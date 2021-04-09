@@ -2,23 +2,23 @@ package com.jpure.rickandmorty.main.home
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
-import com.jpure.rickandmorty.adapters.LocationsListAdapter
-import com.jpure.rickandmorty.databinding.FragmentLocationsListBinding
-import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
-import com.jpure.rickandmorty.views.footer.FooterAdapter
+import com.google.android.material.tabs.TabLayoutMediator
+import com.jpure.rickandmorty.R
+import com.jpure.rickandmorty.adapters.EPISODE_PAGE_INDEX
+import com.jpure.rickandmorty.adapters.LOCATION_PAGE_INDEX
+import com.jpure.rickandmorty.adapters.Page2Adapter
+import com.jpure.rickandmorty.adapters.ROLE_PAGE_INDEX
+import com.jpure.rickandmorty.databinding.FragmentHomePageBinding
 import com.nice.baselibrary.base.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.collectLatest
+
 
 /**
  * @author Jp
@@ -27,53 +27,37 @@ import kotlinx.coroutines.flow.collectLatest
 @FlowPreview
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class LocationListFragment : Fragment() {
-    private lateinit var mBinding: FragmentLocationsListBinding
-
-    private val mViewModel: LocationListViewModel by activityViewModels()
+class HomePageFragment : Fragment() {
+    private lateinit var mBinding: FragmentHomePageBinding
     private var mIsFirst = true
-    private val mAdapter by lazy { LocationsListAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         LogUtils.d("onCreateView")
-        if (!mIsFirst) {
-            return mBinding.root
-        }
-        mBinding = FragmentLocationsListBinding.inflate(inflater, container, false)
-
+        mBinding = FragmentHomePageBinding.inflate(inflater, container, false)
         mBinding.apply {
-            //添加底部加载状态item
-            locationListRecycle.adapter = mAdapter.withLoadStateFooter(FooterAdapter() {
-                mAdapter.retry()
-            })
-            lifecycleOwner = this@LocationListFragment
-            locationRefresh.setOnRefreshListener {
-                loadData()
-            }
+            pages.adapter = Page2Adapter(this@HomePageFragment)
+            TabLayoutMediator(tabs, pages) { tab, position ->
+                tab.text = getTabTitle(position)
+            }.attach()
         }
-        loadData()
-        mIsFirst = false
         return mBinding.root
     }
 
-    private fun loadData() {
-        lifecycleScope.launchWhenCreated {
-            mAdapter.loadStateFlow.collectLatest { state ->
-                mBinding.locationRefresh.isRefreshing = state.refresh is LoadState.Loading
-            }
-        }
-        lifecycleScope.launchWhenCreated {
-            mViewModel.getLocationList().collectLatest {
-                mAdapter.submitData(lifecycle, it)
-            }
+    private fun getTabTitle(position: Int): String? {
+        return when (position) {
+            ROLE_PAGE_INDEX -> getString(R.string.tab_item_roles)
+            LOCATION_PAGE_INDEX -> getString(R.string.tab_item_locations)
+            EPISODE_PAGE_INDEX -> getString(R.string.tab_item_episodes)
+            else -> null
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
+        LogUtils.d("onDestroyView")
     }
     override fun onDestroy() {
         super.onDestroy()

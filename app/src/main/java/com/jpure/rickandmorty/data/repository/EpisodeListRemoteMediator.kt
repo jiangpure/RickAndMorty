@@ -6,25 +6,26 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.jpure.rickandmorty.data.AppDatabase
-import com.jpure.rickandmorty.data.entities.Locations
+import com.jpure.rickandmorty.data.entities.Episode
 import com.jpure.rickandmorty.data.entities.RemoteKeys
+import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.data.remote.RickAndMortyService
 import retrofit2.HttpException
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class LocationListRemoteMediator(
+class EpisodeListRemoteMediator(
     private val service: RickAndMortyService,
     private val db: AppDatabase
-) : RemoteMediator<Int, Locations>() {
+) : RemoteMediator<Int, Episode>() {
     companion object {
-        private val TAG = "LocationListRemoteMediator"
-        private val remoteLocationsList = "locationsList"
+        private val TAG = "EpisodeListRemoteMediator"
+        private val remoteRoleList = "episodeList"
     }
     private var mCount = 0
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Locations>
+        state: PagingState<Int, Episode>
     ): MediatorResult {
         try {
 
@@ -41,7 +42,7 @@ class LocationListRemoteMediator(
              * 3. 将网路插入到本地数据库中
              */
 
-            val locationsDao = db.locationsDao()
+            val episodeDao = db.episodeDao()
             val remoteKeysDao = db.remoteKeysDao()
 //            // 第一步： 判断 LoadType
 //            val pageKey = when (loadType) {
@@ -105,21 +106,21 @@ class LocationListRemoteMediator(
                  return MediatorResult.Success(endOfPaginationReached = false)
             }
             val page = loadKey ?: 0
-            val results = service.getLocationsList(page).apply {
+            val results = service.getEpisodeList(page).apply {
                 mCount = info.pages
             }.results
 
             val item = results.map {
-                Locations(
+                Episode(
                     id = it.id,
                     name = it.name,
-                    type = it.type,
+                    episode = it.episode,
+                    air_date = it.air_date,
+                    characters = it.characters,
                     url = it.url,
                     created = it.created,
                     page = page + 1,
-                    remoteName = remoteLocationsList,
-                    dimension = it.dimension,
-                    residents = it.residents
+                    remoteName = remoteRoleList
                 )
             }
             val endOfPaginationReached = results.isNullOrEmpty()
@@ -127,16 +128,16 @@ class LocationListRemoteMediator(
             // 第三步： 插入数据库
             db.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    remoteKeysDao.clearRemoteKeys(remoteLocationsList)
-                    locationsDao.clearLocations(remoteLocationsList)
+                    remoteKeysDao.clearRemoteKeys(remoteRoleList)
+                    episodeDao.clearEpisode(remoteRoleList)
                 }
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val entity = RemoteKeys(
-                    remoteName = remoteLocationsList,
+                    remoteName = remoteRoleList,
                     nextKey = nextKey
                 )
                 remoteKeysDao.insert(entity)
-                locationsDao.insertAll(item)
+                episodeDao.insertAll(item)
             }
 
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)

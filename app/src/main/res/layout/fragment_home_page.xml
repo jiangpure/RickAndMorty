@@ -8,13 +8,12 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
-            style="@style/Widget.MaterialComponents.TabLayout.Colored"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabIconTint="@drawable/tab_icon_color_selector"
-            app:tabTextColor="?attr/colorPrimaryDark" />
+            app:tabTextColor="@color/colorPrimary" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pages"

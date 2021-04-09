@@ -7,13 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.jpure.rickandmorty.common.DATABASE_NAME
+import com.jpure.rickandmorty.data.entities.Episode
 import com.jpure.rickandmorty.data.entities.Locations
 import com.jpure.rickandmorty.data.entities.RemoteKeys
 import com.jpure.rickandmorty.data.entities.Role
-import com.jpure.rickandmorty.data.local.Converters
-import com.jpure.rickandmorty.data.local.LocationsDao
-import com.jpure.rickandmorty.data.local.RemoteKeysDao
-import com.jpure.rickandmorty.data.local.RoleDao
+import com.jpure.rickandmorty.data.local.*
 
 /**
  * Room
@@ -21,13 +19,14 @@ import com.jpure.rickandmorty.data.local.RoleDao
  * @date 2021/2/26.
  */
 //建表、版本
-@Database(entities = [Role::class, RemoteKeys::class, Locations::class], version = 1, exportSchema = false)
+@Database(entities = [Role::class, RemoteKeys::class, Locations::class, Episode::class], version = 2, exportSchema = false)
 //设置转换器
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun roleDao(): RoleDao
     abstract fun locationsDao():LocationsDao
+    abstract fun episodeDao(): EpisodeDao
     abstract fun remoteKeysDao(): RemoteKeysDao
 
     companion object {
