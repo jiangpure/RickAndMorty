@@ -2,7 +2,7 @@ package com.jpure.rickandmorty.ext
 
 /**
  * 加载结果
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/10.
  */
 sealed class RmLoadResult<out T> {

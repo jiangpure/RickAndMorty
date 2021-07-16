@@ -12,7 +12,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/30.
  */
 @FlowPreview

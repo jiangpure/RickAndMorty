@@ -16,7 +16,7 @@ import com.jpure.rickandmorty.R
 import com.jpure.rickandmorty.data.entities.Role
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/5.
  */
 /**

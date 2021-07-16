@@ -11,12 +11,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/30.
  */
 const val HOME_PAGE_INDEX = 0
 const val MY_PAGE_INDEX = 1
 
+@Deprecated("delete")
 @FlowPreview
 @ExperimentalCoroutinesApi
 class MainPage2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment) {

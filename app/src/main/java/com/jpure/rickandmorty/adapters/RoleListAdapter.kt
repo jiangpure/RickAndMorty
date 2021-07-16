@@ -1,4 +1,4 @@
-package com.jpure.rickandmorty.adapters
+ package com.jpure.rickandmorty.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,13 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.jpure.rickandmorty.MainNavDirections
 import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.databinding.ItemListRoleBinding
-import com.jpure.rickandmorty.main.home.HomePageFragment
-import com.jpure.rickandmorty.main.home.HomePageFragmentDirections
-import com.jpure.rickandmorty.views.DataBindingViewHolder
+import com.jpure.rickandmorty.main.MainFragmentDirections
+import com.jpure.rickandmorty.base.DataBindingViewHolder
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/1/4.
  */
 class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewHolder>(RoleDiffCallback()) {
@@ -55,7 +53,7 @@ class RickAndMortyAdapter :PagingDataAdapter<Role, RickAndMortyAdapter.DataViewH
         }
         //利用导航组件跳转
         private fun navigateToRoleInfo(roleId: Int, view: View) {
-            val direction = MainNavDirections.actionToRoleInfoFragment(roleId)
+            val direction = MainFragmentDirections.actionMainFragmentToRoleInfoFragment(roleId)
             view.findNavController().navigate(direction)
         }
     }

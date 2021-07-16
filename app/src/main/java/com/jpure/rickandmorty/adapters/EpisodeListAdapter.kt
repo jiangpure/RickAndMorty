@@ -6,10 +6,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.jpure.rickandmorty.data.entities.Episode
 import com.jpure.rickandmorty.databinding.ItemListEpisodeBinding
-import com.jpure.rickandmorty.views.DataBindingViewHolder
+import com.jpure.rickandmorty.base.DataBindingViewHolder
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/1/4.
  */
 class EpisodeListAdapter :PagingDataAdapter<Episode, EpisodeListAdapter.DataViewHolder>(EpisodeDiffCallback()) {

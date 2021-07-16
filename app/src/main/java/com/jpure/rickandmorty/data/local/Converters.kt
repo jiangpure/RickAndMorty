@@ -7,7 +7,7 @@ import com.jpure.rickandmorty.data.entities.Role
 import com.jpure.rickandmorty.ext.fromJsonToObjNotExe
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/26.
  */
 open class Converters {

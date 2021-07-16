@@ -8,7 +8,7 @@ import com.jpure.rickandmorty.data.entities.RemoteKeys
 
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/4.
  */
 @Dao

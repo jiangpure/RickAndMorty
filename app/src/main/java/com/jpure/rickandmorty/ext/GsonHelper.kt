@@ -7,7 +7,7 @@ import java.lang.reflect.Type
 
 
 /**
- * @author JPlus
+ * @author Pure Jianglus
  * @date 2020/6/2.
  */
 

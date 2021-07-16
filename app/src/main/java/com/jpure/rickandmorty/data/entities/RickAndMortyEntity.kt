@@ -3,7 +3,7 @@ package com.jpure.rickandmorty.data.entities
 import androidx.room.*
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/25.
  */
 data class RickAndMortyEntity(

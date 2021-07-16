@@ -1,7 +1,7 @@
 
 
 /**
- * @author jpure
+ * @author Pure Jiangure
  * @date 2021/2/24.
  */
 object Versions {
@@ -12,7 +12,7 @@ object Versions {
     const val cardView = "1.0.0"
     const val constraintLayout = "2.0.4"
     const val coreKtx = "1.3.2"
-    const val dataStore = "1.0.0-alpha03"
+    const val dataStore = "1.0.0-alpha08"
     const val espressoCore = "3.2.0"
     const val fragment = "1.3.0-alpha06"
     const val glide = "4.10.0"
@@ -25,9 +25,11 @@ object Versions {
     const val leakCanary ="2.3"
     const val lifecycle = "2.2.0"
     const val material = "1.2.1"
+    const val mmkv = "1.2.8'"
     const val navigation = "2.3.3"
     const val okHttpLogging = "4.9.0"
     const val paging = "3.0.0-alpha02"
+    const val preference = "1.1.0-alpha04"
     const val recyclerview = "1.0.0"
     const val retrofit = "2.9.0"
     const val room = "2.3.0-alpha01"
@@ -50,6 +52,8 @@ object AndroidX {
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
     const val swipeRefreshLayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    const val preference =
+        "androidx.preference:preference:${Versions.preference}"
 }
 
 object AppStartup{
@@ -126,6 +130,10 @@ object Lifecycle {
 
 object Material {
     const val material = "com.google.android.material:material:${Versions.material}"
+}
+
+object MMKV{
+    const val material = "com.tencent:mmkv-static:${Versions.mmkv}"
 }
 
 object Navigation{

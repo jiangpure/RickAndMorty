@@ -16,7 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/4/8.
  */
 

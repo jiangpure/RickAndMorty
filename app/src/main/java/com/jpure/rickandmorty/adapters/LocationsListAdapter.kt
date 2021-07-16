@@ -1,19 +1,15 @@
 package com.jpure.rickandmorty.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.google.gson.Gson
 import com.jpure.rickandmorty.data.entities.Locations
 import com.jpure.rickandmorty.databinding.ItemListLocationsBinding
-import com.jpure.rickandmorty.views.DataBindingViewHolder
+import com.jpure.rickandmorty.base.DataBindingViewHolder
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/1/4.
  */
 class LocationsListAdapter :PagingDataAdapter<Locations, LocationsListAdapter.DataViewHolder>(LocationsDiffCallback()) {

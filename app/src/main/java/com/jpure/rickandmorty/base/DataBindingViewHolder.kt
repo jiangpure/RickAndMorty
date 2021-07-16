@@ -1,4 +1,4 @@
-package com.jpure.rickandmorty.views
+package com.jpure.rickandmorty.base
 
 import android.content.Context
 import android.view.View

@@ -10,7 +10,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/25.
  */
 interface RickAndMortyService {

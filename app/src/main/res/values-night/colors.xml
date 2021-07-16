@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/colorGrey_light</color>
-    <color name="colorPrimaryVariant">@color/black</color>
+    <color name="colorPrimaryVariant">@color/dimgray</color>
     <color name="colorOnPrimary">@color/white</color>
 
     <color name="colorSecondary">@color/gray_cc</color>
     <color name="colorSecondaryVariant">@color/dimgray</color>
-    <color name="colorOnSecondary">@color/black</color>
+    <color name="colorOnSecondary">@color/floralwhite</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

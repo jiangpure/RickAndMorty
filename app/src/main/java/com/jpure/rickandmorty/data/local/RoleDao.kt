@@ -8,7 +8,7 @@ import androidx.room.Query
 import com.jpure.rickandmorty.data.entities.Role
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/26.
  */
 @Dao

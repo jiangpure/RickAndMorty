@@ -5,7 +5,7 @@ import com.jpure.rickandmorty.data.remote.RickAndMortyService
 import com.jpure.rickandmorty.data.repository.RickAndMortyRepository
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/25.
  */
 object RepositoryFactory {

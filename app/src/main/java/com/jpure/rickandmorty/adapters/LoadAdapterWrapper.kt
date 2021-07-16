@@ -9,7 +9,7 @@ import com.nice.baselibrary.base.adapter.BaseAdapter
 
 /**
  * recyclerView适配器的上拉加载装饰器
- * @author JPlus
+ * @author Pure Jianglus
  * @date 2020/5/3.
  */
 class LoadAdapterWrapper<T>(

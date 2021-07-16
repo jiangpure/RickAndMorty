@@ -21,7 +21,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/25.
  */
 @FlowPreview

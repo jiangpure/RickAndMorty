@@ -21,7 +21,7 @@ import kotlinx.coroutines.FlowPreview
 
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/30.
  */
 @FlowPreview
@@ -35,7 +35,7 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         LogUtils.d("onCreateView")
         mBinding = FragmentHomePageBinding.inflate(inflater, container, false)
         mBinding.apply {
@@ -55,15 +55,17 @@ class HomePageFragment : Fragment() {
             else -> null
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         LogUtils.d("onDestroyView")
     }
+
     override fun onDestroy() {
         super.onDestroy()
-
         LogUtils.d("onDestroy")
     }
+
     override fun onPause() {
         LogUtils.d("onPause")
         super.onPause()

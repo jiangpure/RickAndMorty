@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_area_key">
+        <item>中国</item>
+        <item>国外</item>
+        <item>火星</item>
+        <item>太阳系</item>
+        <item>银河系</item>
+        <item>宇宙</item>
+    </string-array>
+    <string-array name="setting_area_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>

@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/10.
  */
 @FlowPreview

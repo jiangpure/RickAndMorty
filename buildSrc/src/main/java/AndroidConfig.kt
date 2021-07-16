@@ -29,3 +29,4 @@ object BuildTypeDebug : BuildTypes {
 object BuildTypeRelease : BuildTypes {
     override val isMinifyEnabled = false
 }
+

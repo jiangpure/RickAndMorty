@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jpure.rickandmorty">
     <uses-permission android:name="android.permission.INTERNET"/>
+    
     <application
         android:name=".RickAndMortyApp"
         android:allowBackup="true"
@@ -12,6 +13,11 @@
         android:theme="@style/Theme.RickAndMorty">
 
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:launchMode="singleTop">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />

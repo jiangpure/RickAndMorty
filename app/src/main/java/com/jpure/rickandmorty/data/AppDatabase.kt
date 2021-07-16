@@ -15,7 +15,7 @@ import com.jpure.rickandmorty.data.local.*
 
 /**
  * Room
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/26.
  */
 //建表、版本

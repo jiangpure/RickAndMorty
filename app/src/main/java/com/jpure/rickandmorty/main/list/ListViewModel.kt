@@ -1,4 +1,4 @@
-package com.jpure.rickandmorty.main.home
+package com.jpure.rickandmorty.main.list
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
@@ -7,15 +7,13 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.jpure.rickandmorty.data.entities.Locations
 import com.jpure.rickandmorty.data.repository.RickAndMortyRepository
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
 /**
  * @author Pure Jiang
- * @date 2021/3/30.
+ * @date 2021/5/12.
  */
-@FlowPreview
-class LocationListViewModel @ViewModelInject constructor(private val repository: RickAndMortyRepository):ViewModel() {
-
+class ListViewModel @ViewModelInject constructor(private val repository: RickAndMortyRepository): ViewModel() {
     fun getLocationList(): Flow<PagingData<Locations>> = repository.fetchLocationsList().cachedIn(viewModelScope)
+
 }

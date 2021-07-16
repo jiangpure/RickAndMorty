@@ -3,7 +3,7 @@ package com.jpure.rickandmorty.views.footer
 import android.view.View
 import androidx.paging.LoadState
 import com.jpure.rickandmorty.databinding.ItemRecyclerNetStateBinding
-import com.jpure.rickandmorty.views.DataBindingViewHolder
+import com.jpure.rickandmorty.base.DataBindingViewHolder
 import com.nice.baselibrary.base.utils.showNormalToast
 
 

@@ -22,6 +22,7 @@
         android:id="@+id/action_share"
         android:icon="@drawable/ic_baseline_more_vert_24"
         android:title="@string/menu_item_share_role"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        />
 
 </menu>

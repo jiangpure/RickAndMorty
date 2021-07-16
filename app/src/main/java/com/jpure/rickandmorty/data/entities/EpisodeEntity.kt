@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/30.
  */
 data class EpisodeEntity(

@@ -2,27 +2,25 @@ package com.jpure.rickandmorty.main.info
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jpure.rickandmorty.R
 import com.jpure.rickandmorty.databinding.FragmentRoleInfoBinding
-import com.jpure.rickandmorty.views.DataBindingFragment
+import com.jpure.rickandmorty.base.DataBindingFragment
 import com.nice.baselibrary.base.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_role_info.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/3/10.
  */
 @FlowPreview
@@ -39,18 +37,30 @@ class RoleInfoFragment : DataBindingFragment(R.layout.fragment_role_info) {
         mBinding.apply {
             viewModel = mViewModel
             lifecycleOwner = this@RoleInfoFragment
-            toolbar.setNavigationOnClickListener { view ->
-                view.findNavController().navigateUp()
+            toolbar.apply{
+                setNavigationOnClickListener { view ->
+                    view.findNavController().navigateUp()
+                }
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.action_share -> {
+                            this@RoleInfoFragment.findNavController().navigate(RoleInfoFragmentDirections.actionRoleInfoFragmentToListFragment())
+                        }
+                    }
+                    true
+                }
             }
+
         }
+
         mViewModel.loadRoleInfo(args.roleId).observe(viewLifecycleOwner, Observer {
 
         })
+
         mViewModel.failure.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
     }
-
     override fun onPause() {
         LogUtils.d("onPause")
         super.onPause()
@@ -74,6 +84,7 @@ class RoleInfoFragment : DataBindingFragment(R.layout.fragment_role_info) {
         LogUtils.d("onCreateView")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
+
 
     override fun onAttach(context: Context) {
         LogUtils.d("onAttach")

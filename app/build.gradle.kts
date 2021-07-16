@@ -3,7 +3,6 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("kotlin-android-extensions")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -58,8 +57,10 @@ dependencies {
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.constraintLayout)
     implementation(AndroidX.pagingRuntime)
+    implementation(AndroidX.preference)
     implementation(AndroidX.swipeRefreshLayout)
     implementation(BaseLibrary.baseLibrary)
+    implementation(DataStore.core)
     implementation(DataStore.dataStore)
     implementation(Glide.glide)
     implementation(Hilt.dagger)

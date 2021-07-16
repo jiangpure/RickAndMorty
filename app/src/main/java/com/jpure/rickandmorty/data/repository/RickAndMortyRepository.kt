@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/25.
  */
 class RickAndMortyRepository @Inject constructor(

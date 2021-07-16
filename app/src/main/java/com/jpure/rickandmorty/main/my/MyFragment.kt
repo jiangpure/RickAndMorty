@@ -2,13 +2,17 @@ package com.jpure.rickandmorty.main.my
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.jpure.rickandmorty.R
 import com.jpure.rickandmorty.adapters.RickAndMortyAdapter
 import com.jpure.rickandmorty.databinding.FragmentMyBinding
 import com.jpure.rickandmorty.databinding.FragmentRoleListBinding
@@ -21,7 +25,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 
 /**
- * @author Jp
+ * @author Pure Jiang
  * @date 2021/2/25.
  */
 @FlowPreview
@@ -30,8 +34,7 @@ import kotlinx.coroutines.flow.collectLatest
 class MyFragment : Fragment() {
 
     private lateinit var mBinding: FragmentMyBinding
-    private val mViewModel: RoleListViewModel by activityViewModels()
-    private val mAdapter = RickAndMortyAdapter()
+    private val mViewModel: MyViewModel by activityViewModels()
     private var mIsFirst = true
 
     override fun onCreateView(
@@ -43,19 +46,19 @@ class MyFragment : Fragment() {
         if (!mIsFirst) {
             return mBinding.root
         }
-        mBinding = FragmentMyBinding.inflate(inflater, container, false)
-
-        mBinding.apply {
+        mBinding = FragmentMyBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@MyFragment
+            click = Click()
         }
-        loadData()
+
         mIsFirst = false
         return mBinding.root
     }
 
-
-    private fun loadData() {
-
+    inner class Click{
+        fun toSetting(){
+            this@MyFragment.findNavController().navigate(R.id.action_main_fragment_to_setting_fragment)
+        }
     }
 
     override fun onDestroyView() {
